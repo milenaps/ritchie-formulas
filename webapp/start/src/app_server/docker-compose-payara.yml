@@ -1,0 +1,17 @@
+version: '2.2'
+
+services:
+  payara:
+    image: payara/server-web:5.2021.4-jdk11
+    container_name: payara
+    hostname: payara
+    ports:
+      - 4848:4848
+      - 8080:8080
+      - 9009:9009
+    volumes:
+      - ${DEPLOYMENT_FOLDER}:/opt/payara/deployments
+    working_dir: /opt/payara/bin/
+    environment:
+      - PAYARA_ARGS="--debug"
+      - -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9009

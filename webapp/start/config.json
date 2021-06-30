@@ -1,0 +1,121 @@
+{
+  "inputs": [
+    {
+      "cache": {
+        "active": true,
+        "newLabel": "Type new value. ",
+        "qty": 3
+      },
+      "label": "Type the application war path location",
+      "name": "war_path",
+      "required": true,
+      "tutorial": "The path in your local machine where to locate the war file to start the application",
+      "type": "text"
+    },
+    {
+      "default": "false",
+      "items": [
+        "false",
+        "true"
+      ],
+      "label": "Do you need to start a database?",
+      "name": "start_database",
+      "required": false,
+      "tutorial": "Choose one option",
+      "type": "bool"
+    },
+    {
+      "condition": {
+        "variable":"start_database",
+        "operator":"==",
+        "value":"true"
+      },
+      "default": "PostgreSQL",
+      "items": [
+        "PostgreSQL"
+      ],
+      "label": "Choose the database from the given list",
+      "name": "selected_db",
+      "required": false,
+      "tutorial": "Select the database required to run your application",
+      "type": "text"
+    },
+    {
+      "condition": {
+        "variable":"start_database",
+        "operator":"==",
+        "value":"true"
+      },
+      "label": "Type the database user",
+      "name": "selected_db_user",
+      "required": true,
+      "tutorial": "Provide the database user",
+      "type": "text"
+    },
+    {
+      "condition": {
+        "variable":"start_database",
+        "operator":"==",
+        "value":"true"
+      },
+      "label": "Type the database password",
+      "name": "selected_db_password",
+      "required": true,
+      "tutorial": "Provide the database password",
+      "type": "text"
+    },
+    {
+      "condition": {
+        "variable":"start_database",
+        "operator":"==",
+        "value":"true"
+      },
+      "label": "Type the database schema",
+      "name": "selected_db_schema",
+      "required": true,
+      "tutorial": "Provide the database schema",
+      "type": "text"
+    },
+    {
+      "condition": {
+        "variable":"start_database",
+        "operator":"==",
+        "value":"true"
+      },
+      "default": "false",
+      "items": [
+        "false",
+        "true"
+      ],
+      "label": "Do you wanna run any scripts?",
+      "name": "run_db_scripts",
+      "required": false,
+      "tutorial": "Choose one option",
+      "type": "bool"
+    },
+    {
+      "condition": {
+        "variable":"run_db_scripts",
+        "operator":"==",
+        "value":"true"
+      },
+      "label": "Indicate the path with the scripts numbered in the sequence to run",
+      "name": "db_scripts_path",
+      "required": true,
+      "tutorial": "Path with database scripts to be executed prior to the application startup",
+      "type": "text"
+    },
+    {
+      "default": "Tomcat",
+      "items": [
+        "Tomcat",
+        "Payara"
+      ],
+      "label": "Choose the server that suits your application",
+      "name": "application_server",
+      "required": false,
+      "tutorial": "Select the server to run your application",
+      "type": "text"
+    }
+  ]
+}

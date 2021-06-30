@@ -1,0 +1,14 @@
+version: '2.2'
+
+services:
+  payara:
+    image: tomcat:10.0.6-jdk11-openjdk-slim-buster
+    container_name: tomcat
+    hostname: tomcat
+    ports:
+      - 9090:8080
+      - 8000:8000
+    volumes:
+      - ${DEPLOYMENT_FOLDER}:/usr/local/tomcat/webapps
+    environment:
+      - CATALINA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
