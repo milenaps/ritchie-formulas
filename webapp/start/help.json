@@ -1,4 +1,4 @@
 {
-	"short": "webapp start formula",
-	"long": "webapp start formula"
+	"short": "Quick start webapps on Docker",
+	"long": "Automation for easier deployment of legacy JAVA webapps using Docker"
 }

@@ -1,13 +1,18 @@
 # Description
 
-Formula description
+Automation for easier deployment of legacy JAVA webapps using Docker
 
 ## Command
 
 ```bash
-rit webapp start
+rit webapp start --local
 ```
 
 ## Requirements
 
+- Docker
+- Docker-compose
+
 ## Demonstration
+
+![Formula in action](/script_running.png)

@@ -1,25 +1,18 @@
 #!/bin/sh
 
-run() {
-  if [ "$START_DATABASE" = true ]; then
+runFormula() {
+  if [ "$START_DATABASE" == true ]; then
     startDatabase
   fi
 
-  echoColor "yellow" "Starting the $APPLICATION_SERVER application server"
-
   export DEPLOYMENT_FOLDER=$WAR_PATH
-
-  if [ "$APPLICATION_SERVER" == "Tomcat" ]; then
-    startService "app_server" "tomcat"
-  elif [ "$APPLICATION_SERVER" == "Payara" ]; then
-    startService "app_server" "payara"
-  fi
+  startAppServer
 
   unset DEPLOYMENT_FOLDER; unset DB_USER; unset DB_PASSWORD; unset DB_SCHEMA;
 }
 
 startDatabase() {
-  echoColor "yellow" "Starting the $SELECTED_DB database"
+  echoColor "blue" "Starting the $SELECTED_DB database"
 
   export DB_USER=$SELECTED_DB_USER
   export DB_PASSWORD=$SELECTED_DB_PASSWORD
@@ -34,11 +27,16 @@ startDatabase() {
     done
   fi
 
-  if [ "$RUN_DB_SCRIPTS" = true ]; then
+  runDBScripts
+}
 
-    #---
-    #TODO Logic here to identify order of scripts splitting number from name
-    #---
+runDBScripts() {
+  #---
+  #TODO Logic to determine order of scripts splitting number from name
+  #---
+  if [ "$RUN_DB_SCRIPTS" == true ]; then
+
+    echoColor "green" "Running database scripts"
 
     for script in "$DB_SCRIPTS_PATH"/*
     do
@@ -48,6 +46,19 @@ startDatabase() {
     done
 
   fi
+}
+
+startAppServer() {
+  echoColor "yellow" "Starting the $APPLICATION_SERVER application server"
+
+  case $APPLICATION_SERVER in
+    Tomcat)
+      startService "app_server" "tomcat"
+      ;;
+    Payara)
+      startService "app_server" "payara"
+      ;;
+    esac
 }
 
 startService() {
