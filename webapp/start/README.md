@@ -15,4 +15,4 @@ rit webapp start --local
 
 ## Demonstration
 
-![Formula in action](/script_running.png)
+![Formula in action](script_running.png)
